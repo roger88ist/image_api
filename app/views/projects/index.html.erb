@@ -1,19 +1,9 @@
 <%= form_with model: @project, local: true do |form| %>
-  <p>
-    <%= form.text_field :name, placeholder: 'name' %>
-  </p>
- 
-  <p>
-    <%= form.text_area :description, placeholder: 'description' %>
-  </p>
+  <%= form.text_field :name, placeholder: 'name' %><br>
+  <%= form.text_area :description, placeholder: 'description' %><br>
+  <%= form.email_field :creator_email, placeholder: 'email' %><br>
 
-  <p>
-    <%= form.email_field :creator_email, placeholder: 'email' %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+  <%= form.submit %>
 <% end %>
 
 <h2>List of Projects</h2>
