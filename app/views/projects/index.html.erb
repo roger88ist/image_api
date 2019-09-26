@@ -2,6 +2,7 @@
   <%= form.text_field :name, placeholder: 'name' %><br>
   <%= form.text_area :description, placeholder: 'description' %><br>
   <%= form.email_field :creator_email, placeholder: 'email' %><br>
+  <%= form.file_field :image %><br>
 
   <%= form.submit %>
 <% end %>
@@ -10,6 +11,7 @@
 
 <table>
   <thead>
+    <th>Image</th>
     <th>Name</th>
     <th>Description</th>
     <th>Creator Email</th>
@@ -17,6 +19,9 @@
   </thead>
   <% @projects.each do |project| %>
     <tbody>
+      <td style="width: 200px; height: auto">
+        <%= image_tag(project.image, style: "width:100%") if project.image.attached? %>
+      </td>
       <td><%= project.name %></td>
       <td><%= project.description %></td>
       <td><%= project.creator_email %></td>
