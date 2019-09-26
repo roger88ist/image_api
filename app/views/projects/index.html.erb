@@ -1,0 +1,36 @@
+<%= form_with model: @project, local: true do |form| %>
+  <p>
+    <%= form.text_field :name, placeholder: 'name' %>
+  </p>
+ 
+  <p>
+    <%= form.text_area :description, placeholder: 'description' %>
+  </p>
+
+  <p>
+    <%= form.email_field :creator_email, placeholder: 'email' %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<h2>List of Projects</h2>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Creator Email</th>
+    <th>Timestamp</th>
+  </thead>
+  <% @projects.each do |project| %>
+    <tbody>
+      <td><%= project.name %></td>
+      <td><%= project.description %></td>
+      <td><%= project.creator_email %></td>
+      <td><%= project.created_at %></td>
+    </tbody>
+  <% end %>
+</table>
