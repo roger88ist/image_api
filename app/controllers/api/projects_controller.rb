@@ -16,6 +16,14 @@ class Api::ProjectsController < ActionController::API
     end
   end
 
+  def thumbnail
+    @project = Project.find(params[:id])
+
+    render json: @project.image.variant(resize: '200x200!').processed
+  rescue ActiveRecord::RecordNotFound
+    render json: "Project ID: #{params[:id]} can't be found", status: :unprocessable_entity
+  end
+
   private
 
   def project_params

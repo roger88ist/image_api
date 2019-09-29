@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :projects
 
   namespace :api do
-    resources :projects, only: [:index, :create]
+    resources :projects, only: [:index, :create] do
+      member do
+        get "thumbnail"
+      end
+    end
   end
 end
