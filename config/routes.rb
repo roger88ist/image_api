@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :projects
 
   namespace :api do
-    resources :projects
+    resources :projects, only: [:index, :create]
   end
 end
