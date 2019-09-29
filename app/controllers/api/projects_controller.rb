@@ -3,7 +3,7 @@ class Api::ProjectsController < ActionController::API
   before_action :allow_response_access, only: [:create]
 
   def index
-    render json: Project.all
+    render json: Project.order(created_at: :desc).all
   end
 
   def create
