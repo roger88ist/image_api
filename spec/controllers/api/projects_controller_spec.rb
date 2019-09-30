@@ -33,4 +33,22 @@ RSpec.describe Api::ProjectsController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'POST create' do
+    before {
+      valid_params = project_attrs
+      valid_params[:image] = fixture_file_upload(file_path)
+      post :create, params:  { project: valid_params }
+    }
+
+    it 'creates the project' do
+      project_name = JSON.parse(response.body)['name']
+
+      expect(project_name).to eq(project_attrs[:name])
+    end
+
+    it 'responds with 200' do
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
