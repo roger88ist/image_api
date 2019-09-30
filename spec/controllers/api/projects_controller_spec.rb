@@ -51,4 +51,21 @@ RSpec.describe Api::ProjectsController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET thumbnail' do
+    before {
+      create_project
+      get :thumbnail, params: {id: Project.last.id}
+    }
+
+    it 'responds with the correct file' do
+      file_name = JSON.parse(response.body)['blob']['filename']
+
+      expect(file_name).to eq("puppy.jpg")
+    end
+
+    it 'responds with a 200 status' do
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
