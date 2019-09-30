@@ -58,9 +58,12 @@ RSpec.describe Api::ProjectsController do
       get :thumbnail, params: {id: Project.last.id}
     }
 
-    it 'responds with the correct file' do
-      file_name = JSON.parse(response.body)['blob']['filename']
+    it 'responds with the correct file url' do
+      response_body = response.body
+      http = response_body.first(7)
+      file_name = response_body.last(9)
 
+      expect(http).to eq('http://')
       expect(file_name).to eq("puppy.jpg")
     end
 
