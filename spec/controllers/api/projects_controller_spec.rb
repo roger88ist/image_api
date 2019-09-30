@@ -17,17 +17,16 @@ RSpec.describe Api::ProjectsController do
     project.save
   }
   
-  
   describe 'GET index' do
     before { 
       create_project
       get :index
     }
 
-    it 'returns the list of projects' do
-      project_name = JSON.parse(response.body).first['name']
+    it 'returns the list of projects with correct attributes' do
+      project_keys = JSON.parse(response.body).first.keys
       
-      expect(project_name).to eq(project_attrs[:name])
+      expect(project_keys).to include('id', 'name', 'description', 'created_at')
     end
 
     it 'returns a 200 status' do
